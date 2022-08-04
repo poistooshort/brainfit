@@ -1,0 +1,12 @@
+.app {
+	color: black;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+
+	&__component-card {
+		background-color: rgba(255,0,0,0.2);
+		box-sizing: border-box;
+		height: 80vh;
+	}
+}
