@@ -7,4 +7,37 @@
 	align-items: center;
 	flex-wrap: wrap;
 	padding: 1rem;
+	gap: 1rem;
+
+	&__logo {
+		justify-self: flex-start;
+		flex-grow: 1;
+	}
+
+	&__exercises {
+		text-decoration: none;
+		color: black;
+		border: 3px solid black;
+		padding: 0.5rem;
+		border-radius: 1rem;
+	}
+
+	&__avatar-container {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: black;
+		border: 3px solid black;
+		border-radius: 50%;
+		padding: 0.25rem;
+
+		&--active {
+			display: none;
+		}
+	}
+
+	&__avatar {
+		border-radius: 50%;
+		height: 5vh;
+	}
 }
