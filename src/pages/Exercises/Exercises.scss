@@ -1,0 +1,9 @@
+@use '../../styles/partials/mixins';
+
+.exercises {
+	@include mixins.component-card;
+
+	&__upload-button {
+		@include mixins.button-standard;	
+	}
+}

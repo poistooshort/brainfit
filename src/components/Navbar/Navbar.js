@@ -9,8 +9,15 @@ const Navbar = ({ user }) => {
 
 	return(
 		<div className="navbar">
+
 			<h2 className="navbar__logo">brainfit</h2>
-			<NavLink to="/" className="navbar__exercises">exercises</NavLink>
+
+			<NavLink to="/exercises" 
+				className="navbar__exercises"
+			>
+				exercises
+			</NavLink>
+
 			<NavLink 
 				to="/profile"
 				className="navbar__avatar-container"
@@ -22,6 +29,7 @@ const Navbar = ({ user }) => {
 					alt="avatar"
 				/>
 			</NavLink> 
+
 		</div>
 	);
 }

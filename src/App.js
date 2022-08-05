@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
+import Exercises from './pages/Exercises/Exercises';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -48,6 +49,16 @@ class App extends Component {
 									component={(routerProps) => {
 										return(
 											<Profile 
+												user={user}
+												{...routerProps}
+											/>
+										);
+									}}
+								/>
+								<Route path='/exercises' 
+									component={(routerProps) => {
+										return(
+											<Exercises
 												user={user}
 												{...routerProps}
 											/>
