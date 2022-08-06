@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 
 import './Upload.scss';
@@ -6,15 +6,22 @@ import './Upload.scss';
 const Upload = ({ user }) => {
 	const [file, setFile] = useState('');
 	const [progress, setProgress] = useState(0);
+	const progressBar = useRef();
+	const uploadButton = useRef();
 
 	const handleUpload = (e) => {
 		e.preventDefault();
 
 		const { title, description, image } = e.target;
-		console.log("@handleUpload"); //TEST
-		console.log(e); //TEST
+		
+		/* TEST BLOCK
+		console.log("@handleUpload"); 
+		console.log(e); 
 		console.log('title :', title.value);
 		console.log('description :', description.value);
+		progressBar.current.style.width = '50%';
+		uploadButton.current.style.visibility = 'hidden';
+		*/
 	}
 
 	return(
@@ -47,8 +54,13 @@ const Upload = ({ user }) => {
 					</textarea>
 				</label>
 
-				<button type="submit">upload</button>
+				<button type="submit" ref={uploadButton}>upload</button>
 			</form>			
+			<div className="upload__progress">
+				<div className="upload__progress-bar" ref={progressBar}>
+					{progress === 100 ? 'done' : ''}
+				</div>
+			</div>
 		</div>
 	);
 }

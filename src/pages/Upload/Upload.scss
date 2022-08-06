@@ -3,6 +3,8 @@
 .upload {
 	@include mixins.component-card;
 	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	font-size: 2rem;
 
 	&__form {
@@ -22,5 +24,18 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	&__progress {
+		box-sizing: border-box;
+		border: 2px solid black;
+		width: 50%;
+		height: 1rem;
+
+		&-bar {
+			background-color: red;
+			width: 0%;
+			height: 100%;
+		}
 	}
 }
