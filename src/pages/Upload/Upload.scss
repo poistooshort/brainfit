@@ -1,0 +1,5 @@
+@use '../../styles/partials/mixins';
+
+.upload {
+	@include mixins.component-card;
+}
