@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import './Upload.scss';
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const UPLOAD_URL = `${SERVER_URL}/upload`;
+
 const Upload = ({ user }) => {
 	const [file, setFile] = useState('');
 	const [progress, setProgress] = useState(0);
