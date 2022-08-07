@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Upload.scss';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const UPLOAD_URL = `${SERVER_URL}/upload`;
+const EXERCISES_URL = `${SERVER_URL}/exercises`;
 
 const Upload = ({ user }) => {
 	const [file, setFile] = useState('');
@@ -12,10 +12,16 @@ const Upload = ({ user }) => {
 	const progressBar = useRef();
 	const uploadButton = useRef();
 
+	const handleFile = (e) => {
+		setProgress(0);
+		const currFile = e.target.files[0];
+		setFile(currFile);
+	}
+
 	const handleUpload = (e) => {
 		e.preventDefault();
 
-		const { title, description, image } = e.target;
+		const { title, description} = e.target;
 		
 		/* TEST BLOCK
 		console.log("@handleUpload"); 
@@ -25,6 +31,24 @@ const Upload = ({ user }) => {
 		progressBar.current.style.width = '50%';
 		uploadButton.current.style.visibility = 'hidden';
 		*/
+
+		const formData = new FormData();
+		formData.append('file', file);
+		formData.append('title', title.value);
+		formData.append('description', description.value);
+
+		axios.post(EXERCISES_URL, formData, {
+			onUploadProgress: (ProgressEvent) =>  {
+				let progress = Math.round(ProgressEvent.loaded / ProgressEvent.total * 100);
+				setProgress(progress);
+			}
+		})
+		.then(res => {
+			console.log("Successfully created exercise and uploaded file");
+		})
+		.catch(err => {
+			console.log("There was an error creating exercise and uploading file. Error :", err);
+		});
 	}
 
 	return(
@@ -36,6 +60,7 @@ const Upload = ({ user }) => {
 						className="upload__choose-file"
 						id="image"
 						name="image"
+						onChange={handleFile}
 						type="file">
 					</input>
 				</label>
@@ -61,7 +86,6 @@ const Upload = ({ user }) => {
 			</form>			
 			<div className="upload__progress">
 				<div className="upload__progress-bar" ref={progressBar}>
-					{progress === 100 ? 'done' : ''}
 				</div>
 			</div>
 		</div>
