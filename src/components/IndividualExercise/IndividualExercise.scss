@@ -1,0 +1,17 @@
+@use '../../styles/partials/mixins';
+
+.individual {
+	@include mixins.component-card;
+	
+	&__exercise-container {
+		box-sizing: border-box;
+		background-color: rgba(0,100,200,0.2);
+		display: flex;
+		width: 100%;
+		gap: 1rem;
+	}
+
+	&__image {
+		height: 20rem;
+	}
+}

@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import Exercises from './pages/Exercises/Exercises';
 import Upload from './pages/Upload/Upload';
+import IndividualExercise from './components/IndividualExercise/IndividualExercise';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -56,7 +57,7 @@ class App extends Component {
 										);
 									}}
 								/>
-								<Route path='/exercises' 
+								<Route path='/exercises' exact
 									component={(routerProps) => {
 										return(
 											<Exercises
@@ -66,7 +67,17 @@ class App extends Component {
 										);
 									}}
 								/> 
-								<Route path='/upload' 
+								<Route path='/exercises/:id' 
+									component={(routerProps) => {
+										return(
+											<IndividualExercise
+												user={user}
+												{...routerProps}
+											/>
+										);
+									}}
+								/> 
+								<Route path='/upload' exact
 									component={(routerProps) => {
 										return(
 											<Upload

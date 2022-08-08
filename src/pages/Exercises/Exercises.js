@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './Exercises.scss';
@@ -10,6 +10,7 @@ const GIFS_URL = process.env.REACT_APP_SERVER_URL + '/gifs';
 
 const Exercises = ({ user }) => {
 	const [exerciseList, setExerciseList] = useState(null);	
+	const history = useHistory();
 
 	useEffect(() => {
 		//axios get list of all exercises
@@ -20,7 +21,9 @@ const Exercises = ({ user }) => {
 	}, []);
 
 	const handleExerciseSelect = (e) => {
-		console.log(e.target.parentElement.id);	
+		const { id } = e.target.parentElement;
+		
+		history.push(`/exercises/${id}`);
 	}
 
 	return(
