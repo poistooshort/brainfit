@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 import './Navbar.scss';
 import defaultAvatar from '../../assets/images/avatar-default.png';
@@ -10,7 +10,7 @@ const Navbar = ({ user }) => {
 	return(
 		<div className="navbar">
 
-			<h2 className="navbar__logo">brainfit</h2>
+			<Link to="/" className="navbar__logo">brainfit</Link>
 
 			<NavLink to="/exercises" 
 				className="navbar__exercises"

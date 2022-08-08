@@ -3,6 +3,38 @@
 .exercises {
 	@include mixins.component-card;
 
+	&__list {
+		background-color: red;
+		width: 90%;
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		padding: 1rem 0;
+		gap: 1rem;
+	}
+	
+	&__card {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 3px solid black;
+		height: 15rem;
+		margin: 0;
+	}
+
+	&__image {
+		width: 10rem;
+		height: 10rem;
+	}
+
+	&__button-container {
+		box-sizing: border-box;
+		display: flex;
+		background-color: green;
+	}
+
 	&__upload-button {
 		@include mixins.button-standard;	
 		align-self: flex-start;
