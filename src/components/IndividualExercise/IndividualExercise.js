@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './IndividualExercise.scss';
 
@@ -13,35 +14,39 @@ const IndividualExercise = (props) =>  {
 	const [ exercise, setExercise ] = useState(null);
 	const [ comments, setComments ] = useState([]);
 	const [ liked, setLiked ] = useState(false);
+	const [ canDelete, setCanDelete ] = useState(false);
+	
+	const history = useHistory();
 
 	useEffect(() => {
 		axios.get(`${EXERCISES_URL}/${id}`)
 			.then(res => {
 				setExercise(res.data);
+				if(exercise && user && exercise.creatorId === user.id){
+					setCanDelete(true);
+				}
 			})
 			.catch(err => {
 				console.log('Unable to fetch exercise');
 			});
-	}, [id]);
+	}, [id, exercise, user]);
 
 	useEffect(() => {
 		axios.get(`${SERVER_URL}/comments/${id}`)
 			.then(res => {
 				if(comments && res.data.length && res.data.length !== comments.length){
-					console.log('setting comments');
 					setComments(res.data);
 				}
 			})
 			.catch(err => {
 				console.log('Error fetching comments for this exercise');
 			});
-	}, [comments.length, id]);
+	}, [comments, id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		const comment = e.target.comment.value;
-		console.log(e);
 		e.target.comment.value = '';
 
 		const commentData = {
@@ -68,7 +73,34 @@ const IndividualExercise = (props) =>  {
 	}
 
 	const handleLike = (e) => {
-		console.log("inside handleLike");
+		e.preventDefault();
+		
+		const likeChange = (liked) ? -1 : 1;
+
+		const likesData = { likes: (exercise.likes + likeChange) };
+		const newExerciseData = {...exercise, likes: (exercise.likes + likeChange)};
+
+		axios.put(`${EXERCISES_URL}/likes/${id}`, likesData)
+			.then(res => {
+				setLiked(!liked);
+				setExercise(newExerciseData);
+			})
+			.catch(err => {
+				console.log(`Error trying to update likes with error: ${err}`);
+			});
+	}
+
+	const handleDelete = (e) => {
+		e.preventDefault();
+
+		axios.delete(`${EXERCISES_URL}/${id}`)
+			.then(res => {
+				console.log(`Successfully deleted the exercise with id: ${id}`);
+			})
+			.catch(err => {
+				console.log(`Error trying to delete exercise with id: ${id}`);
+			});
+		history.push('/');
 	}
 
 	if(!exercise){
@@ -89,7 +121,7 @@ const IndividualExercise = (props) =>  {
 						<button className="individual__likes-button" onClick={handleLike}>
 							{`${exercise.likes} likes`}
 						</button> 
-						<button className="individual__delete-button">
+						<button className={canDelete ? "individual__delete-button" : "individual__delete-button--hidden"} onClick={handleDelete}>
 							delete
 						</button> 
 					</div>
