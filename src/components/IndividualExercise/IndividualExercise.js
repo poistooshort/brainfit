@@ -11,7 +11,8 @@ const IndividualExercise = (props) =>  {
 	const { user } = props;
 	const { id } = props.match.params;
 	const [ exercise, setExercise ] = useState(null);
-	const [ comments, setComments ] = useState(null);
+	const [ comments, setComments ] = useState([]);
+	const [ liked, setLiked ] = useState(false);
 
 	useEffect(() => {
 		axios.get(`${EXERCISES_URL}/${id}`)
@@ -21,19 +22,20 @@ const IndividualExercise = (props) =>  {
 			.catch(err => {
 				console.log('Unable to fetch exercise');
 			});
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		axios.get(`${SERVER_URL}/comments/${id}`)
 			.then(res => {
-				if(res.data.length){
+				if(comments && res.data.length && res.data.length !== comments.length){
+					console.log('setting comments');
 					setComments(res.data);
 				}
 			})
 			.catch(err => {
 				console.log('Error fetching comments for this exercise');
 			});
-	}, [comments]);
+	}, [comments.length, id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -65,6 +67,10 @@ const IndividualExercise = (props) =>  {
 			});
 	}
 
+	const handleLike = (e) => {
+		console.log("inside handleLike");
+	}
+
 	if(!exercise){
 		return(<div className="individual"></div>);
 	}
@@ -80,8 +86,8 @@ const IndividualExercise = (props) =>  {
 				/>
 				<div className="individual__exercise-details">
 					<div className="individual__likes-delete-bar">
-						<button className="individual__likes-button">
-							{exercise.likes}
+						<button className="individual__likes-button" onClick={handleLike}>
+							{`${exercise.likes} likes`}
 						</button> 
 						<button className="individual__delete-button">
 							delete
@@ -97,16 +103,16 @@ const IndividualExercise = (props) =>  {
 			</div>
 			<section className="individual__comments-section">
 				<form className="individual__comment-submit" onSubmit={handleSubmit}>
-					<textarea id="comment" name="comment"></textarea>
-					<button className="individual__comments-submit" type="submit">
+					<textarea id="comment" name="comment" className="individual__comment-input"></textarea>
+					<button className="individual__submit-button" type="submit">
 						submit
 					</button>
 				</form>
 				{ comments && comments.map(comment => {
 					return(
-						<h3 key={uuid()} className="individual__comment">
-						{`"${comment.comment}" -${comment.username}`}
-						</h3>
+						<div key={uuid()} className="individual__comment">
+							<h3>{`"${comment.comment}" -${comment.username}`}</h3>
+						</div>
 					);
 				})}
 			</section>
