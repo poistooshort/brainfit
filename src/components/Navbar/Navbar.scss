@@ -1,5 +1,9 @@
+@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins';
+
 .navbar {
-	background-color: rgba(0,255,0,0.2);
+	//background-color: rgba(0,255,0,0.2);
+	@include mixins.back-splash;
 	box-sizing: border-box;
 	height: 10vh;
 	display: flex;
@@ -10,6 +14,8 @@
 	gap: 1rem;
 
 	&__logo {
+		display: flex;
+		align-items: center;
 		text-decoration: none;
 		color: black;
 		font-size: 1.5rem;
@@ -17,10 +23,14 @@
 		flex-grow: 1;
 	}
 
+	&__logo-image {
+		height: 3rem;
+	}
+
 	&__exercises {
 		text-decoration: none;
-		color: black;
-		border: 3px solid black;
+		color: white;
+		border: 3px solid variables.$bg-blue-2;
 		padding: 0.5rem;
 		border-radius: 1rem;
 	}
@@ -30,7 +40,7 @@
 		align-items: center;
 		text-decoration: none;
 		color: black;
-		border: 3px solid black;
+		border: 3px solid white;
 		border-radius: 50%;
 		padding: 0.25rem;
 

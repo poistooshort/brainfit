@@ -19,6 +19,12 @@
 	padding: 1rem;
 }
 
+@mixin back-splash {
+	background-image: url('../../assets/images/background.png');
+	background-size: cover;
+	background-position: center;
+}
+
 @mixin mobile {
 	@media (min-width: 320px) {
 		@content;

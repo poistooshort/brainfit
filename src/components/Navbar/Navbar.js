@@ -1,3 +1,4 @@
+import logo from '../../assets/images/logo.png';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 import './Navbar.scss';
@@ -10,7 +11,9 @@ const Navbar = ({ user }) => {
 	return(
 		<div className="navbar">
 
-			<Link to="/" className="navbar__logo">brainfit</Link>
+			<Link to="/" className="navbar__logo">brainfit
+				<img src={logo} className="navbar__logo-image"/>
+			</Link>
 
 			<NavLink to="/exercises" 
 				className="navbar__exercises"

@@ -1,0 +1,13 @@
+@use './fonts';
+@use './mixins';
+@use './variables';
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Ubuntu';
+	font-weight: normal;
+}
