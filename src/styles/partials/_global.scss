@@ -4,10 +4,16 @@
 
 * {
 	box-sizing: border-box;
+	outline: 2px solid rgba(255,0,0,0.2);
 }
 
 body {
 	margin: 0;
 	font-family: 'Ubuntu';
 	font-weight: normal;
+	text-transform: capitalize;
+}
+
+input {
+	font-family: inherit;
 }

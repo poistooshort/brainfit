@@ -11,12 +11,15 @@ const Navbar = ({ user }) => {
 	return(
 		<div className="navbar">
 
-			<Link to="/" className="navbar__logo">brainfit
+			<Link to="/" className="navbar__logo">brainFit
 				<img src={logo} className="navbar__logo-image"/>
 			</Link>
 
-			<NavLink to="/exercises" 
+			<NavLink 
+				to="/exercises" 
 				className="navbar__exercises"
+				activeClassName="navbar__exercises--active"
+				isActive={() => ["/exercises"].includes(pathname)}
 			>
 				exercises
 			</NavLink>

@@ -1,0 +1,48 @@
+@use '../../styles/partials/global';
+@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins';
+
+.homepage {
+	@include mixins.component-card;
+	gap: 0;
+	flex-wrap: wrap;
+
+	&__title-greeting-container {
+		display:flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		height: 100%;
+		width: 50%;
+		padding-right: 5rem;
+		border-right: 5px solid variables.$bf-yellow;
+	}
+
+	&__title {
+		align-self: center;
+		font-size: 5rem;
+		color: variables.$bf-yellow;
+		border-bottom: 5px solid variables.$bf-yellow;
+		text-transform: none;
+		text-shadow:
+		-3px -3px 0 #000,
+		3px -3px 0 #000,
+		-3px 3px 0 #000,
+		3px 3px 0 #000;
+	}
+
+	&__greeting {
+		color: variables.$bf-yellow;
+		font-size: 2rem;
+		padding: 2rem;
+		text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+	}
+
+	&__image {
+		width: 50%;
+		height: 100%;
+	}
+}

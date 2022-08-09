@@ -1,19 +1,84 @@
+@use '../../styles/partials/variables';
 @use '../../styles/partials/mixins';
 
 .profile {
 	@include mixins.component-card;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	align-content: flex-start;
+	flex-wrap: wrap;
+
+	&__title {
+		text-align: center;
+		width: 100%;
+		height: fit-content;
+		margin: 0;
+	}
+
+	&__account {
+		width: 20%;
+		height: 80%;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 1rem;
+		justify-content: space-between;
+		border-left: 3px solid variables.$bf-yellow;
+	}
+
+	&__account-info {
+	}
 
 	&__logout-button {
-		@include mixins.button-standard;
-		height: 1rem;
+		box-sizing: border-box;
+		@include mixins.button-2;
+		height: fit-content;
+		width: fit-content;
+		margin: 1rem;
 	}
 
 	&__username {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		&-label {
+			border-bottom: 3px solid black;
+		}
+
+		&-text {
+			padding: 0.5rem;
+		}
+	}
+
+	&__avatar {
+		height: 10rem;
+		width: fit-content;
+	}
+
+	&__user-videos {
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		padding: 1rem 0.75rem;
 		gap: 1rem;
+		width: calc(80% - 1rem);
+	}
+
+	&__card {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		justify-content: center;
+		align-items: center;
+		border: 3px solid variables.$bf-grey-3;
+		border-radius: 15px;
+		height: 15rem;
+		margin: 0;
 	}
 
 	&__image {
+		width: 10rem;
 		height: 10rem;
 	}
 }

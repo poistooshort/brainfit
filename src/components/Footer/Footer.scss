@@ -1,5 +1,13 @@
+@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins';
+@use '../../styles/partials/global';
+
 .footer {
-	background-color: rgba(0,0,255,0.2);
-	box-sizing: border-box;
+	color: white;
 	height: 10vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	padding: 1rem 1rem;
 }

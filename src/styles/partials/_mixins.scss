@@ -9,15 +9,38 @@
 	border-radius: 2rem;
 	padding: 2rem;
 	gap: 1rem;
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+	/*
+	&::-webkit-scrollbar {
+    }
+
+    &::-webkit-scrollbar-thumb {
+    }
+
+    &::-webkit-scrollbar-track {
+    }
+	*/
 }
 
 @mixin button-standard {
 	text-decoration: none;
-	color: black;
-	border: 2px solid black;
-	border-radius: 0.3rem;
-	padding: 1rem;
+	color: white;
+	border: 3px solid variables.$bf-blue-2;
+	padding: 0.5rem;
+	border-radius: 1rem;
 }
+
+@mixin button-2 {
+	text-decoration: none;
+	color: variables.$bf-grey-1;
+	font-weight: 700;
+	border: 3px solid variables.$bf-blue-2;
+	background-color: variables.$bf-grey-3;
+	padding: 0.5rem;
+	border-radius: 1rem;
+}
+
 
 @mixin back-splash {
 	background-image: url('../../assets/images/background.png');

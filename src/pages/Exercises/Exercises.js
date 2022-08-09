@@ -18,6 +18,9 @@ const Exercises = ({ user }) => {
 			.then(res => {
 				setExerciseList(res.data);
 			})
+			.catch(err => {
+				console.log(`Error trying to fetch all exercises`);
+			});
 	}, []);
 
 	const handleExerciseSelect = (e) => {
@@ -43,7 +46,7 @@ const Exercises = ({ user }) => {
 								src={`${GIFS_URL}/${exercise.filename}`} 
 								alt={exercise.title}
 							/>
-							<h2>{exercise.title}</h2>
+							<h2 className="exercises__title">{exercise.title}</h2>
 						</div>
 					);
 				})}

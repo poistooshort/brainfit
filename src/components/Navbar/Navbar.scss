@@ -2,8 +2,6 @@
 @use '../../styles/partials/mixins';
 
 .navbar {
-	//background-color: rgba(0,255,0,0.2);
-	@include mixins.back-splash;
 	box-sizing: border-box;
 	height: 10vh;
 	display: flex;
@@ -19,8 +17,10 @@
 		text-decoration: none;
 		color: black;
 		font-size: 1.5rem;
+		font-weight: 700;
 		justify-self: flex-start;
-		flex-grow: 1;
+		margin-right: auto;
+		text-transform: none;
 	}
 
 	&__logo-image {
@@ -28,11 +28,12 @@
 	}
 
 	&__exercises {
-		text-decoration: none;
-		color: white;
-		border: 3px solid variables.$bg-blue-2;
-		padding: 0.5rem;
-		border-radius: 1rem;
+		@include mixins.button-standard;
+
+		&--active {
+			border: 3px solid variables.$bf-yellow;
+			pointer-events: none;
+		}
 	}
 
 	&__avatar-container {
@@ -40,12 +41,13 @@
 		align-items: center;
 		text-decoration: none;
 		color: black;
-		border: 3px solid white;
+		border: 3px solid variables.$bf-blue-2;
 		border-radius: 50%;
 		padding: 0.25rem;
 
 		&--active {
-			display: none;
+			border: 3px solid variables.$bf-yellow;
+			pointer-events: none;
 		}
 	}
 

@@ -1,25 +1,28 @@
+@use '../../styles/partials/variables';
 @use '../../styles/partials/mixins';
 
 .exercises {
 	@include mixins.component-card;
 
 	&__list {
-		background-color: red;
 		width: 90%;
 		display: flex;
 		justify-content: space-evenly;
 		flex-wrap: wrap;
-		padding: 1rem 0;
+		padding: 1rem 0.75rem;
 		gap: 1rem;
+		border-right: 10px solid variables.$bf-yellow;
 	}
 	
 	&__card {
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 		justify-content: center;
 		align-items: center;
-		border: 3px solid black;
+		border: 3px solid variables.$bf-grey-3;
+		border-radius: 15px;
 		height: 15rem;
 		margin: 0;
 	}
@@ -29,14 +32,18 @@
 		height: 10rem;
 	}
 
+	&__title {
+		color: variables.$bf-grey-2;
+		padding-top: 0.5rem;
+	}
+
 	&__button-container {
 		box-sizing: border-box;
 		display: flex;
-		background-color: green;
 	}
 
 	&__upload-button {
-		@include mixins.button-standard;	
+		@include mixins.button-2;	
 		align-self: flex-start;
 	}
 }
