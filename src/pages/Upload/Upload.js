@@ -99,7 +99,7 @@ const Upload = ({ user }) => {
 					</select>
 				</label>
 
-				<button type="submit" ref={uploadButton}>upload</button>
+				<button type="submit" className="upload__upload-button" ref={uploadButton}>upload</button>
 			</form>			
 			<div className="upload__progress" ref={progressContainer}>
 				<div className="upload__progress-bar" style={{ width: progress}}>
