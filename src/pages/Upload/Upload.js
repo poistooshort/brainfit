@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './Upload.scss';
+import uploadGif from '../../assets/images/upload.gif';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const EXERCISES_URL = `${SERVER_URL}/exercises`;
@@ -61,51 +62,57 @@ const Upload = ({ user }) => {
 
 	return(
 		<div className="upload">
-			<form className="upload__form" onSubmit={handleUpload}>
+			<section className="upload__upload-gif-section">
+				<img src={uploadGif} alt="animated gif of guy cycling"/>
+			</section>
+			<section className="upload__upload-section">
+				<form className="upload__form" onSubmit={handleUpload}>
 
-				<label htmlFor="image">exercise gif: 
-					<input 
-						className="upload__choose-file"
-						id="image"
-						name="image"
-						onChange={handleFile}
-						type="file">
-					</input>
-				</label>
+					<label htmlFor="image">exercise gif: 
+						<input 
+							className="upload__choose-file"
+							id="image"
+							name="image"
+							onChange={handleFile}
+							type="file">
+						</input>
+					</label>
 
-				<label htmlFor="title"> exercise title:
-					<input 
-						id="title" 
-						name="title" 
-						type="text" 
-						placeholder="exercise title">
-					</input>
-				</label>
+					<label htmlFor="title">title:
+						<input 
+							id="title" 
+							name="title" 
+							type="text" 
+							placeholder="exercise title">
+						</input>
+					</label>
 
-				<label htmlFor="description"> exercise description:
-					<textarea 
-						id="description" 
-						name="description" 
-						placeholder="exercise description">
-					</textarea>
-				</label>
+					<label htmlFor="description"> exercise description:
+						<textarea 
+							id="description" 
+							name="description" 
+							className = "upload__exercise-description"
+							placeholder="exercise description">
+						</textarea>
+					</label>
 
-				<label htmlFor="equipment"> equipment:
-					<select name="equipment" id="equipment" className="upload__equipment-select">
-						<option value="none">none</option>
-						<option value="dumbbells">dumbbells</option>
-						<option value="barbell">barbell</option>
-						<option value="kettleBell">kettle bell</option>
-					</select>
-				</label>
+					<label htmlFor="equipment"> equipment:
+						<select name="equipment" id="equipment" className="upload__equipment-select">
+							<option value="none">none</option>
+							<option value="dumbbells">dumbbells</option>
+							<option value="barbell">barbell</option>
+							<option value="kettleBell">kettle bell</option>
+						</select>
+					</label>
 
-				<button type="submit" className="upload__upload-button" ref={uploadButton}>upload</button>
-			</form>			
-			<div className="upload__progress" ref={progressContainer}>
-				<div className="upload__progress-bar" style={{ width: progress}}>
+					<button type="submit" className="upload__upload-button" ref={uploadButton}>upload</button>
+				</form>			
+				<div className="upload__progress" ref={progressContainer}>
+					<div className="upload__progress-bar" style={{ width: progress}}>
+					</div>
 				</div>
-			</div>
-			<Link to='/exercises' className="upload__done-button" ref={doneButton}>done</Link>
+				<Link to='/exercises' className="upload__done-button" ref={doneButton}>done</Link>
+			</section>
 		</div>
 	);
 }

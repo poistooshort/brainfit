@@ -100,7 +100,7 @@ const IndividualExercise = (props) =>  {
 			.catch(err => {
 				console.log(`Error trying to delete exercise with id: ${id}`);
 			});
-		history.push('/');
+		history.push('/exercises');
 	}
 
 	if(!exercise){
@@ -118,19 +118,19 @@ const IndividualExercise = (props) =>  {
 				/>
 				<div className="individual__exercise-details">
 					<div className="individual__likes-delete-bar">
-						<button className="individual__likes-button" onClick={handleLike}>
-							{`${exercise.likes} likes`}
-						</button> 
-						<button className={canDelete ? "individual__delete-button" : "individual__delete-button--hidden"} onClick={handleDelete}>
+						<div className={liked ? "individual__likes-button--liked" : "individual__likes-button"} onClick={handleLike}>
+							{`${exercise.likes} likes 💪`}
+						</div> 
+						<div className={canDelete ? "individual__delete-button" : "individual__delete-button--hidden"} onClick={handleDelete}>
 							delete
-						</button> 
+						</div> 
 					</div>
-					<h2>title</h2>
-					<h3>{exercise.title}</h3>
-					<h2>equipment</h2>
-					<h3>{exercise.equipment}</h3>
-					<h2>description</h2>
-					<p>{exercise.description}</p>
+					<h2 className="individual__details-title">title</h2>
+					<h3 className="individual__details-data">{exercise.title}</h3>
+					<h2 className="individual__details-title">equipment</h2>
+					<h3 className="individual__details-data">{exercise.equipment}</h3>
+					<h2 className="individual__details-title">description</h2>
+					<p className="individual__details-description">{exercise.description}</p>
 				</div>
 			</div>
 			<section className="individual__comments-section">
@@ -143,7 +143,8 @@ const IndividualExercise = (props) =>  {
 				{ comments && comments.map(comment => {
 					return(
 						<div key={uuid()} className="individual__comment">
-							<h3>{`"${comment.comment}" -${comment.username}`}</h3>
+							<h3>{`"${comment.comment}"`}</h3>
+							<p>{`- ${comment.username}`}</p>
 						</div>
 					);
 				})}

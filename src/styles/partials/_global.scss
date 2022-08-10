@@ -16,4 +16,27 @@ body {
 
 input {
 	font-family: inherit;
+	border: 2px solid variables.$bf-grey-1;
+	border-radius: 5px;
+	padding: 0.25rem;
+}
+
+textarea {
+	font-family: inherit;
+	font-size: 1.25rem;
+	color: variables.$bf-grey-1;
+	height: fit-content;
+	padding: 1rem;
+	border: 3px solid variables.$bf-blue-2;
+	border-radius: 1rem;
+	resize: none;
+}
+
+button {
+	@include mixins.button-2;
+
+	&:active {
+		color: variables.$bf-yellow;	
+		border: 3px solid variables.$bf-blue-3;
+	}
 }

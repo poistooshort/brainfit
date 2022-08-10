@@ -1,3 +1,4 @@
+@use '../../styles/partials/variables';
 .login {
 	background-color: rgba(10,10,10,0.75);
 	display: flex;
@@ -31,6 +32,9 @@
 		gap: 0.5rem;
 		border: 2px solid black;
 		text-decoration: none;
+		font-weight: 700;
+		font-size: 2em;
+		color: variables.$bf-grey-1;
 		border-radius: 12%;
 		padding: 0.5rem;
 	}

@@ -3,6 +3,8 @@
 
 .exercises {
 	@include mixins.component-card;
+	height: fit-content;
+	min-height: 100%;
 
 	&__list {
 		width: 90%;
@@ -11,7 +13,7 @@
 		flex-wrap: wrap;
 		padding: 1rem 0.75rem;
 		gap: 1rem;
-		border-right: 10px solid variables.$bf-yellow;
+		border-right: 3px solid variables.$bf-yellow;
 	}
 	
 	&__card {
@@ -25,6 +27,11 @@
 		border-radius: 15px;
 		height: 15rem;
 		margin: 0;
+
+		&:hover {
+			cursor: pointer;
+			border: 3px solid variables.$bf-grey-2;
+		}
 	}
 
 	&__image {
@@ -40,6 +47,25 @@
 	&__button-container {
 		box-sizing: border-box;
 		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	&__sort {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+
+		&-label {
+			margin-left: 1rem;
+			color: variables.$bf-blue-1;
+		}
+
+		&-radio {
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 
 	&__upload-button {
