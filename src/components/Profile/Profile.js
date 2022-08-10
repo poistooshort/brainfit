@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './Profile.scss';
 
@@ -20,7 +20,7 @@ const Profile = ({ user }) => {
 			.catch(err => {
 				console.log(`Error trying to fetch exercises from user with id: ${user.id}`);
 			});
-	},[]);
+	},[user.id]);
 
 	const handleExerciseSelect = (e) => {
 		const { id } = e.target.parentElement;
