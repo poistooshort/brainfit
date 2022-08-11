@@ -9,8 +9,8 @@ const EXERCISES_URL = process.env.REACT_APP_SERVER_URL + '/exercises';
 const GIFS_URL = process.env.REACT_APP_SERVER_URL + '/gifs';
 
 const Exercises = ({ user }) => {
+	const [sortOption, setSortOption] = useState('likes');
 	const [exerciseList, setExerciseList] = useState(null);	
-	const [sortOption, setSortOption] = useState("likes");
 	const history = useHistory();
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ const Exercises = ({ user }) => {
 					console.log(`Error trying to fetch all exercises`);
 				});
 		}
-	}, [exerciseList]);
+	}, []);
 
 	const handleExerciseSelect = (e) => {
 		const { id } = e.target.parentElement;
@@ -33,12 +33,14 @@ const Exercises = ({ user }) => {
 	}
 
 	const handleSort = (e) => {
-		setSortOption(e.target.value);	
-		const sortingList = exerciseList; 
-		(sortOption === "likes" && sortingList.sort((a, b) => a.likes - b.likes));
-		(sortOption === "newest" && sortingList.sort((a, b) => (new Date(a.created)).getTime() - (new Date(b.created)).getTime()));
-		(sortOption === "oldest" && sortingList.sort((a, b) => b.created - a.created));
+		const option = e.target.value;
+		const sortingList = exerciseList;
+
+		(option === "likes" && sortingList.sort((a, b) => b.likes - a.likes));
+		(option === "newest" && sortingList.sort((a, b) => (new Date(b.created)).getTime() - (new Date(a.created)).getTime()));
+		(option === "oldest" && sortingList.sort((a, b) => (new Date(a.created)).getTime() - (new Date(b.created)).getTime()));
 		setExerciseList(sortingList);
+		setSortOption(option);
 	}
 
 	return(

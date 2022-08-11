@@ -1,70 +1,58 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# brainFit
 
-## Available Scripts
+brainFit is single page web app that is a semi-social network style form of sharing exercises in the form of animated gifs. It looks to bring quick access to exercise reference to users who are short on time and just want simple and quick access to ideas for exercises.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+**Client:** React, Sass, Axios, Uuid
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Server:** Node, Express, Cors, Knex, Passport, MySql
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install brainFit with npm
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make a folder for the client and within that directory :
+```bash
+  git clone git@github.com:polin0517/brainfit.git
+  npm install
+```
+ You will need a running MySQL Database with the following config :
+ 
+    host: '127.0.0.1',
+	user: 'root',
+	password: 'rootroot',
+	database: 'brainfit',
+    charset: 'utf8'
 
-### `npm run eject`
+Make a folder for the server and within this directory :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+    git clone git@github.com:polin0517/brainfit-server.git
+    npm install
+    npm run migrate
+    npm run seed
+    npm run dev
+```
+Return to the client folder :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+    npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Lessons Learned
 
-## Learn More
+This is my first solo project from ideation through creation. It was definitely kind of a choppy road and my journey isn't finished but I've definitely enjoyed the trip so far. During the process I have discovered that I would like to strengthen my skills in design and project management.  
+## 🚀 About Me
+I'm a recently graduated full stack developer from BrainStation. Always looking to get better and learn new things! Please drop a line and let me know what you think or drop me some suggestions!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/po-ting-lin/)
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
