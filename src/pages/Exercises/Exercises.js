@@ -8,7 +8,7 @@ import './Exercises.scss';
 const EXERCISES_URL = process.env.REACT_APP_SERVER_URL + '/exercises';
 const GIFS_URL = process.env.REACT_APP_SERVER_URL + '/gifs';
 
-const Exercises = ({ user }) => {
+const Exercises = ({ user, handleShowLogin }) => {
 	const [sortOption, setSortOption] = useState('likes');
 	const [exerciseList, setExerciseList] = useState(null);	
 	const history = useHistory();
@@ -41,6 +41,17 @@ const Exercises = ({ user }) => {
 		(option === "oldest" && sortingList.sort((a, b) => (new Date(a.created)).getTime() - (new Date(b.created)).getTime()));
 		setExerciseList(sortingList);
 		setSortOption(option);
+	}
+
+	const handleToUpload = (e) => {
+		console.log(user);
+		if (user === null){
+			handleShowLogin();
+			//history.push('/');
+		}
+		else {
+			history.push('/upload');
+		}
 	}
 
 	return(
@@ -81,12 +92,12 @@ const Exercises = ({ user }) => {
 						<label className="exercises__sort-label" htmlFor="sort">oldest</label>
 					</div>
 				</form>
-				<NavLink
-					to="/upload"
+				<div
 					className="exercises__upload-button"
+					onClick={handleToUpload}
 				>
 					upload
-				</NavLink>
+				</div>
 			</div>
 		</div>
 	);

@@ -71,5 +71,9 @@
 	&__upload-button {
 		@include mixins.button-2;	
 		align-self: flex-start;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }

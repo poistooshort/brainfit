@@ -16,9 +16,11 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 class App extends Component {
 	state = {
-		user: null
+		user: null,
+		showLogin: false
 	}
 
+	/*
 	componentDidMount(){
 		axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
 			.then(res => {
@@ -35,7 +37,14 @@ class App extends Component {
 				}
 			});
 	}
+	*/
 		
+	handleShowLogin = () => {
+		console.log("before:", this.state.showLogin);
+		this.setState({ showLogin: true });
+		console.log("after:", this.state.showLogin);
+	}
+
 	render() {
 		
 		const { user } = this.state;
@@ -62,6 +71,7 @@ class App extends Component {
 										return(
 											<Exercises
 												user={user}
+												handleShowLogin={() => {this.handleShowLogin();}}
 												{...routerProps}
 											/>
 										);
@@ -90,7 +100,7 @@ class App extends Component {
 							</Switch> 
 					</div>
 					<Footer/>
-					{!user && <Login/>}
+					{this.state.showLogin && <Login/>}
 				</div>
 			</Router>
 	  );
