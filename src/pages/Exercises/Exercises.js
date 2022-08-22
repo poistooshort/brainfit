@@ -44,14 +44,7 @@ const Exercises = ({ user, handleShowLogin }) => {
 	}
 
 	const handleToUpload = (e) => {
-		console.log(user);
-		if (user === null){
-			handleShowLogin();
-			//history.push('/');
-		}
-		else {
 			history.push('/upload');
-		}
 	}
 
 	return(
@@ -92,12 +85,16 @@ const Exercises = ({ user, handleShowLogin }) => {
 						<label className="exercises__sort-label" htmlFor="sort">oldest</label>
 					</div>
 				</form>
-				<div
-					className="exercises__upload-button"
-					onClick={handleToUpload}
-				>
-					upload
-				</div>
+				{ user ? 
+					<div 
+						className="exercises__upload-button"
+						onClick={handleToUpload}
+					>
+						upload
+					</div>
+					:
+					null
+				}
 			</div>
 		</div>
 	);

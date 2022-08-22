@@ -20,7 +20,6 @@ class App extends Component {
 		showLogin: false
 	}
 
-	/*
 	componentDidMount(){
 		axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
 			.then(res => {
@@ -37,12 +36,9 @@ class App extends Component {
 				}
 			});
 	}
-	*/
 		
 	handleShowLogin = () => {
-		console.log("before:", this.state.showLogin);
 		this.setState({ showLogin: true });
-		console.log("after:", this.state.showLogin);
 	}
 
 	render() {
