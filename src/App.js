@@ -6,8 +6,7 @@ import './App.scss';
 import Homepage from './pages/Homepage/Homepage';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import Login from './components/Login/Login';
-import Profile from './components/Profile/Profile';
+import Profile from './pages/Profile/Profile';
 import Exercises from './pages/Exercises/Exercises';
 import Upload from './pages/Upload/Upload';
 import IndividualExercise from './components/IndividualExercise/IndividualExercise';
@@ -17,7 +16,6 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 class App extends Component {
 	state = {
 		user: null,
-		showLogin: false
 	}
 
 	componentDidMount(){
@@ -96,7 +94,6 @@ class App extends Component {
 							</Switch> 
 					</div>
 					<Footer/>
-					{this.state.showLogin && <Login/>}
 				</div>
 			</Router>
 	  );
