@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './Profile.scss';
+import Login from '../../components/Login/Login';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const GIFS_URL = SERVER_URL + '/gifs';
@@ -13,21 +14,28 @@ const Profile = ({ user }) => {
 	const history = useHistory();
 
 	useEffect(() =>  {
-		axios.get(`${SERVER_URL}/exercises/user/${user.id}`)
-			.then(res => {
-				setUserExercises(res.data);
-			})
-			.catch(err => {
-				console.log(`Error trying to fetch exercises from user with id: ${user.id}`);
-			});
-	},[user.id]);
+		if(user){
+			axios.get(`${SERVER_URL}/exercises/user/${user.id}`)
+				.then(res => {
+					setUserExercises(res.data);
+				})
+				.catch(err => {
+					console.log(`Error trying to fetch exercises from user with id: ${user.id}`);
+				});
+		}
+	},[user]);
 
 	const handleExerciseSelect = (e) => {
 		const { id } = e.target.parentElement;
 		
 		history.push(`/exercises/${id}`);
 	}
-
+	
+	if(!user){
+		return(
+			<Login/>
+		);
+	}
 
 	return(
 		<div className="profile">
