@@ -34,6 +34,7 @@ const Navbar = ({ user }) => {
 					src={user ? user.avatar_url : defaultAvatar} 
 					alt="avatar"
 				/>
+				{!user ? <p className="navbar__avatar-text">log in</p> : null}
 			</NavLink> 
 
 		</div>
