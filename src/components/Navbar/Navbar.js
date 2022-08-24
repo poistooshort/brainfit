@@ -12,7 +12,7 @@ const Navbar = ({ user }) => {
 		<div className="navbar">
 
 			<Link to="/" className="navbar__logo">brainFit
-				<img src={logo} className="navbar__logo-image"/>
+				<img src={logo} className="navbar__logo-image" alt="logo of brain flexing"/>
 			</Link>
 
 			<NavLink 
@@ -32,7 +32,7 @@ const Navbar = ({ user }) => {
 			>
 				<img className="navbar__avatar" 
 					src={user ? user.avatar_url : defaultAvatar} 
-					alt="avatar"
+					alt="user avatar"
 				/>
 				{!user ? <p className="navbar__avatar-text">log in</p> : null}
 			</NavLink> 
