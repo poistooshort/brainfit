@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './Exercises.scss';
@@ -14,7 +14,6 @@ const Exercises = ({ user, handleShowLogin }) => {
 	const history = useHistory();
 
 	useEffect(() => {
-		//axios get list of all exercises
 		if(!exerciseList){
 			axios.get(EXERCISES_URL)
 				.then(res => {
@@ -24,7 +23,7 @@ const Exercises = ({ user, handleShowLogin }) => {
 					console.log(`Error trying to fetch all exercises`);
 				});
 		}
-	}, []);
+	}, [exerciseList]);
 
 	const handleExerciseSelect = (e) => {
 		const { id } = e.target.parentElement;
