@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './IndividualExercise.scss';
+import DeleteExercise from '../../components/DeleteExercise/DeleteExercise';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 const EXERCISES_URL = SERVER_URL + '/exercises';
@@ -15,6 +16,7 @@ const IndividualExercise = (props) =>  {
 	const [ comments, setComments ] = useState([]);
 	const [ liked, setLiked ] = useState(false);
 	const [ canDelete, setCanDelete ] = useState(false);
+	const [ showDelete, setShowDelete ] = useState(false);
 	
 	const history = useHistory();
 
@@ -101,6 +103,12 @@ const IndividualExercise = (props) =>  {
 				console.log(`Error trying to delete exercise with id: ${id}`);
 			});
 		history.push('/exercises');
+		setShowDelete(false);
+	}
+
+	const confirmDelete = (e) => {
+		e.preventDefault();
+		setShowDelete(true);
 	}
 
 	if(!exercise){
@@ -121,7 +129,7 @@ const IndividualExercise = (props) =>  {
 						<div className={liked ? "individual__likes-button--liked" : "individual__likes-button"} onClick={handleLike}>
 							{`${exercise.likes} likes 💪`}
 						</div> 
-						<div className={canDelete ? "individual__delete-button" : "individual__delete-button--hidden"} onClick={handleDelete}>
+						<div className={canDelete ? "individual__delete-button" : "individual__delete-button--hidden"} onClick={confirmDelete}>
 							delete
 						</div> 
 					</div>
@@ -149,6 +157,7 @@ const IndividualExercise = (props) =>  {
 					);
 				})}
 			</section>
+			{showDelete ? <DeleteExercise/> : null}
 		</div>
 	);
 }

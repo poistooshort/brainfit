@@ -1,0 +1,10 @@
+@use '../../styles/partials/mixins';
+@use '../../styles/partials/variables';
+
+.delete-exercise {	
+	@include mixins.modal-outter;
+
+	&__modal {
+		@include mixins.modal-inner;
+	}
+}

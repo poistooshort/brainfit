@@ -23,6 +23,31 @@
 	*/
 }
 
+@mixin modal-outter {
+	background-color: rgba(10,10,10,0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+}
+
+@mixin modal-inner {
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 75vh;
+		width: 75vh;
+		border-radius: 10%;
+		gap: 1rem;
+}
+
 @mixin button-standard {
 	text-decoration: none;
 	color: white;
