@@ -45,8 +45,12 @@
 		align-items: center;
 	}
 
-	&__upload-button {
+	&__button {
 		@include mixins.button-2;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	&__progress {
@@ -63,6 +67,13 @@
 			width: 0%;
 			height: 100%;
 		}
+	}
+
+	&__button-row {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		gap: 2rem;
 	}
 
 	&__done-button {

@@ -43,7 +43,7 @@ const Exercises = ({ user, handleShowLogin }) => {
 	}
 
 	const handleToUpload = (e) => {
-			history.push('/upload');
+			history.push('/upload/exercises');
 	}
 
 	return(

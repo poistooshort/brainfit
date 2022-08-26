@@ -81,7 +81,7 @@ class App extends Component {
 										);
 									}}
 								/> 
-								<Route path='/upload' exact
+								<Route path='/upload/:prevLocation' 
 									component={(routerProps) => {
 										return(
 											<Upload

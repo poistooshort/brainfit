@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './Upload.scss';
@@ -9,12 +9,14 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const EXERCISES_URL = `${SERVER_URL}/exercises`;
 const IMAGES_URL = `${SERVER_URL}/exercises/images`;
 
-const Upload = ({ user }) => {
+const Upload = (props) => {
+	const { user } = props;
+	const { prevLocation } = props.match.params;
 	const [file, setFile] = useState('');
 	const [progress, setProgress] = useState(0);
 	const progressContainer = useRef();
-	const uploadButton = useRef();
-	const doneButton = useRef(); 
+	const buttonRefs = { upload: useRef(), cancel: useRef(), done: useRef() };
+	const history = useHistory();
 
 	const handleFile = (e) => {
 		setProgress(0);
@@ -24,7 +26,8 @@ const Upload = ({ user }) => {
 
 	const handleUpload = (e) => {
 		e.preventDefault();
-		uploadButton.current.style.visibility = 'hidden';
+		buttonRefs.upload.current.style.visibility = 'hidden';
+		buttonRefs.cancel.current.style.visibility = 'hidden';
 		progressContainer.current.style.visibility = 'visible';
 
 		const { title, description, equipment } = e.target;
@@ -53,11 +56,17 @@ const Upload = ({ user }) => {
 			return axios.post(EXERCISES_URL, data);
 		})
 		.then(res => {
-			doneButton.current.style.visibility = 'visible';
+			buttonRefs.done.current.style.visibility = 'visible';
 		})
 		.catch(err => {
 			console.log("There was an error creating exercise and uploading file. Error :", err);
 		});
+	}
+
+	const handleCancel = (e) => {
+		e.preventDefault();
+
+		history.push(`/${prevLocation}`);
 	}
 
 	return(
@@ -104,14 +113,16 @@ const Upload = ({ user }) => {
 							<option value="kettleBell">kettle bell</option>
 						</select>
 					</label>
-
-					<button type="submit" className="upload__upload-button" ref={uploadButton}>upload</button>
+					<div className="upload__button-row">
+						<button className="upload__button" onClick={handleCancel} ref={buttonRefs.cancel}>cancel</button>
+						<button type="submit" className="upload__button" ref={buttonRefs.upload}>upload</button>
+					</div>
 				</form>			
 				<div className="upload__progress" ref={progressContainer}>
 					<div className="upload__progress-bar" style={{ width: progress}}>
 					</div>
 				</div>
-				<Link to='/exercises' className="upload__done-button" ref={doneButton}>done</Link>
+				<Link to='/exercises' className="upload__done-button" ref={buttonRefs.done}>done</Link>
 			</section>
 		</div>
 	);
