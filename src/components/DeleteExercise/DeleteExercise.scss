@@ -6,5 +6,24 @@
 
 	&__modal {
 		@include mixins.modal-inner;
+		gap: 2rem;
+	}
+
+	&__button-row {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	&__cancel-button, &__delete-button {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__delete-button {
+		color: red;
+		text-transform: uppercase;
 	}
 }

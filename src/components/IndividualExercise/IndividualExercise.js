@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { v4 as uuid } from 'uuid';
-import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import './IndividualExercise.scss';
 import DeleteExercise from '../../components/DeleteExercise/DeleteExercise';
@@ -92,9 +92,7 @@ const IndividualExercise = (props) =>  {
 			});
 	}
 
-	const handleDelete = (e) => {
-		e.preventDefault();
-
+	const handleDelete = () => {
 		axios.delete(`${EXERCISES_URL}/${id}`)
 			.then(res => {
 				console.log(`Successfully deleted the exercise with id: ${id}`);
@@ -106,9 +104,12 @@ const IndividualExercise = (props) =>  {
 		setShowDelete(false);
 	}
 
-	const confirmDelete = (e) => {
-		e.preventDefault();
+	const confirmDelete = () => {
 		setShowDelete(true);
+	}
+
+	const cancelDelete = () => {
+		setShowDelete(false);
 	}
 
 	if(!exercise){
@@ -157,7 +158,15 @@ const IndividualExercise = (props) =>  {
 					);
 				})}
 			</section>
-			{showDelete ? <DeleteExercise/> : null}
+			{showDelete ? 
+				<DeleteExercise 
+					exerciseTitle={exercise.title}		
+					handleDelete={handleDelete}
+					cancelDelete={cancelDelete}	
+				/> 
+				: 
+				null
+			}
 		</div>
 	);
 }
