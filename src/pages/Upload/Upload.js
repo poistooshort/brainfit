@@ -19,9 +19,20 @@ const Upload = (props) => {
 	const history = useHistory();
 
 	const handleFile = (e) => {
+		const files = e.target.files;
+
+		/*	HOLDING old logic, to be deleted when new logic has been tested
 		setProgress(0);
 		const currFile = e.target.files[0];
 		setFile(currFile);
+		*/
+		if(files[0].type !== "image/gif"){
+			console.log("NOT gif");
+			//send message saying file must be a gif file and exit function without continuing
+		}
+
+		setProgress(0);
+		setFile(files[0]);
 	}
 
 	const handleUpload = (e) => {
@@ -82,6 +93,7 @@ const Upload = (props) => {
 							className="upload__choose-file"
 							id="image"
 							name="image"
+							accept=".gif"
 							onChange={handleFile}
 							type="file">
 						</input>
@@ -92,6 +104,7 @@ const Upload = (props) => {
 							id="title" 
 							name="title" 
 							type="text" 
+							maxlength="255"
 							placeholder="exercise title">
 						</input>
 					</label>
@@ -100,7 +113,8 @@ const Upload = (props) => {
 						<textarea 
 							id="description" 
 							name="description" 
-							className = "upload__exercise-description"
+							className="upload__exercise-description"
+							maxlength="255"
 							placeholder="exercise description">
 						</textarea>
 					</label>
