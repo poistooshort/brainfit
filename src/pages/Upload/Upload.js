@@ -104,7 +104,7 @@ const Upload = (props) => {
 							id="title" 
 							name="title" 
 							type="text" 
-							maxlength="255"
+							maxLength="255"
 							placeholder="exercise title">
 						</input>
 					</label>
@@ -114,7 +114,7 @@ const Upload = (props) => {
 							id="description" 
 							name="description" 
 							className="upload__exercise-description"
-							maxlength="255"
+							maxLength="255"
 							placeholder="exercise description">
 						</textarea>
 					</label>
