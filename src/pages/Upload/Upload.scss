@@ -88,4 +88,12 @@
 	&__exercise-description {
 		width: 40rem;
 	}
+
+	&__choose-file-error, &__exercise-title-error {
+		color: red;
+		font-size: 1rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		visibility: hidden;
+	}
 }

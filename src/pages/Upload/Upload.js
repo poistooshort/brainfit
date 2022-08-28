@@ -12,23 +12,23 @@ const IMAGES_URL = `${SERVER_URL}/exercises/images`;
 const Upload = (props) => {
 	const { user } = props;
 	const { prevLocation } = props.match.params;
-	const [file, setFile] = useState('');
+	const [file, setFile] = useState(null);
 	const [progress, setProgress] = useState(0);
 	const progressContainer = useRef();
+	const fileInput = useRef();
+	const errorRefs = { file: useRef(), title: useRef() };
 	const buttonRefs = { upload: useRef(), cancel: useRef(), done: useRef() };
 	const history = useHistory();
 
 	const handleFile = (e) => {
+		errorRefs.file.current.style.visibility = 'hidden';
 		const files = e.target.files;
 
-		/*	HOLDING old logic, to be deleted when new logic has been tested
-		setProgress(0);
-		const currFile = e.target.files[0];
-		setFile(currFile);
-		*/
-		if(files[0].type !== "image/gif"){
-			console.log("NOT gif");
-			//send message saying file must be a gif file and exit function without continuing
+		if(files[0] && files[0].type !== "image/gif"){
+			errorRefs.file.current.style.visibility = "visible";
+			setFile(null);
+			fileInput.current.value = '';
+			return;
 		}
 
 		setProgress(0);
@@ -37,11 +37,21 @@ const Upload = (props) => {
 
 	const handleUpload = (e) => {
 		e.preventDefault();
+		errorRefs.title.current.style.visibility = 'hidden';
+		errorRefs.file.current.style.visibility = 'hidden';
+
+		const { title, description, equipment } = e.target;
+
+		if(!title.value || !file){
+			!title.value && (errorRefs.title.current.style.visibility = 'visible');
+			!file && (errorRefs.file.current.style.visibility = 'visible');
+			return;
+		}
+
+		errorRefs.title.current.style.visibility = 'hidden';
 		buttonRefs.upload.current.style.visibility = 'hidden';
 		buttonRefs.cancel.current.style.visibility = 'hidden';
 		progressContainer.current.style.visibility = 'visible';
-
-		const { title, description, equipment } = e.target;
 
 		const formData = new FormData();
 		formData.append('file', file);
@@ -95,8 +105,10 @@ const Upload = (props) => {
 							name="image"
 							accept=".gif"
 							onChange={handleFile}
+							ref={fileInput}
 							type="file">
 						</input>
+						<p className="upload__choose-file-error" ref={errorRefs.file}>must select a gif image</p>
 					</label>
 
 					<label htmlFor="title">title:
@@ -107,6 +119,7 @@ const Upload = (props) => {
 							maxLength="255"
 							placeholder="exercise title">
 						</input>
+						<p className="upload__exercise-title-error" ref={errorRefs.title}>must provide a title</p>
 					</label>
 
 					<label htmlFor="description"> exercise description:
