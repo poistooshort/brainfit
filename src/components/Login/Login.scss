@@ -7,6 +7,14 @@
 	&__card {
 		@include mixins.modal-inner;
 	}
+
+	&__sign-in {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding-bottom: 1rem;
+		border-bottom: 3px solid variables.$bf-yellow;
+	}
 	
 	&__github {
 		background-color: white;
