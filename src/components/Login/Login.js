@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './Login.scss';
 import githubIcon from '../../assets/icons/github-icon.png';
 
@@ -13,7 +15,11 @@ const Login = () => {
 						<input className="login__username-input" name="username" id="username" type="text" />
 						<label className="login__password-label" htmlFor="">password :</label>
 						<input className="login__password-input" name="password" id="password" type="password" />
+						<button className="login__submit-button">log in</button>
 				</form>
+				<p className="login__signup-text">{`Don't have an account yet? `}
+					<Link to="/login/signup" className="login__signup">Sign up!</Link>
+				</p>
 				<p className="login__text">please log in to view profile page</p>
 				<a className="login__github" href={`${SERVER_URL}/auth/github`}>
 					<img src={githubIcon} alt="github logo"/>

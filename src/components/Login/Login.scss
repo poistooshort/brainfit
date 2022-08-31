@@ -12,8 +12,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+	}
+
+	&__signup-text {
 		padding-bottom: 1rem;
 		border-bottom: 3px solid variables.$bf-yellow;
+	}
+
+	&__signup-link {
 	}
 	
 	&__github {
@@ -30,5 +36,10 @@
 		color: variables.$bf-grey-1;
 		border-radius: 12%;
 		padding: 0.5rem;
+	}
+
+	&__submit-button {
+		width: 5rem;
+		margin-top: 1rem;
 	}
 }
