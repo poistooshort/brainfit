@@ -18,7 +18,7 @@ const Login = () => {
 						<button className="login__submit-button">log in</button>
 				</form>
 				<p className="login__signup-text">{`Don't have an account yet? `}
-					<Link to="/login/signup" className="login__signup">Sign up!</Link>
+					<Link to="/signup" className="login__signup">Sign up!</Link>
 				</p>
 				<p className="login__text">please log in to view profile page</p>
 				<a className="login__github" href={`${SERVER_URL}/auth/github`}>

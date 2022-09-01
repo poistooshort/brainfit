@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Profile from './pages/Profile/Profile';
 import Exercises from './pages/Exercises/Exercises';
 import Upload from './pages/Upload/Upload';
+import Signup from './pages/Signup/Signup';
 import IndividualExercise from './components/IndividualExercise/IndividualExercise';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -90,6 +91,9 @@ class App extends Component {
 											/>
 										);
 									}}
+								/> 
+								<Route path='/signup' exact
+									component={Signup}
 								/> 
 							</Switch> 
 					</div>

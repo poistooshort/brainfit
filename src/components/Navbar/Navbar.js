@@ -10,11 +10,9 @@ const Navbar = ({ user }) => {
 
 	return(
 		<div className="navbar">
-
 			<Link to="/" className="navbar__logo">brainFit
 				<img src={logo} className="navbar__logo-image" alt="logo of brain flexing"/>
 			</Link>
-
 			<NavLink 
 				to="/exercises" 
 				className="navbar__exercises"
@@ -23,7 +21,6 @@ const Navbar = ({ user }) => {
 			>
 				exercises
 			</NavLink>
-
 			<NavLink 
 				to="/profile"
 				className="navbar__avatar-container"
@@ -36,7 +33,6 @@ const Navbar = ({ user }) => {
 				/>
 				{!user ? <p className="navbar__avatar-text">log in</p> : null}
 			</NavLink> 
-
 		</div>
 	);
 }

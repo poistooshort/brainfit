@@ -1,0 +1,10 @@
+@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins';
+
+.signup {
+	@include mixins.modal-outter;
+
+	&__card {
+		@include mixins.modal-inner;
+	}
+}
