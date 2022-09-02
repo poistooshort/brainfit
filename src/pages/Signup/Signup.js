@@ -2,21 +2,21 @@ import './Signup.scss';
 
 const Signup = (props) => {
 	return(
-		<div class="signup">
-			<div class="signup__card">
-				<h1 class="signup__title">sign up page</h1>
-				<form class="signup__entry-form" action="">
-					<label class="signup__label" for="">username:</label> 
-					<input class="signup__input" type="text"/>
-					<label class="signup__label" for="password">password:</label>
-					<input class="signup__input" type="password"/>
-					<label class="signup__label" for="passwordRepeat">repeat password:</label>
-					<input class="signup__input" type="password"/>
-					<label class="signup__avatar-upload" for="avatar">upload avatar img:</label>
-					<input class="signup__input-avatar" type="file"/>
-					<div class="signup__button-row">
-						<button class="signup__cancel-button">cancel</button>
-						<button class="signup__signup-button">sign up</button>
+		<div className="signup">
+			<div className="signup__card">
+				<h1 className="signup__title">sign up page</h1>
+				<form className="signup__entry-form" action="">
+					<label className="signup__label" htmlFor="username">username:</label> 
+					<input className="signup__input" name="username" id="username" type="text"/>
+					<label className="signup__label" htmlFor="password">password:</label>
+					<input className="signup__input" name="password" id="password" type="password"/>
+					<label className="signup__label" htmlFor="passwordRepeat">repeat password:</label>
+					<input className="signup__input" name="passwordRepeat" id="passwordRepeat" type="password"/>
+					<label className="signup__avatar-upload" htmlFor="avatar">upload avatar img:</label>
+					<input className="signup__input-avatar" name="avatar" id="avatar" type="file"/>
+					<div className="signup__button-row">
+						<button className="signup__cancel-button">cancel</button>
+						<button className="signup__signup-button">sign up</button>
 					</div>
 				</form>
 			</div>
