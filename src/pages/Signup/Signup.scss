@@ -7,4 +7,25 @@
 	&__card {
 		@include mixins.modal-inner;
 	}
+
+	&__title {
+		border-bottom: 3px solid variables.$bf-yellow;
+		padding: 1rem;
+	}
+	&__entry-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	&__label {
+	}
+
+	&__button-row {
+		display: flex;
+		padding-top: 2rem;
+		gap: 1rem;
+	}
 }
