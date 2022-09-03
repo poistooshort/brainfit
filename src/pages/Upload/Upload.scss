@@ -30,7 +30,6 @@
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
-		//margin-bottom: 5rem;
 		border-bottom: 3px solid variables.$bf-yellow;
 		padding: 2rem;
 	}
@@ -47,6 +46,7 @@
 
 	&__button {
 		@include mixins.button-2;
+		width: 25%;
 
 		&:hover {
 			cursor: pointer;
@@ -71,9 +71,9 @@
 
 	&__button-row {
 		display: flex;
-		justify-content: center;
+		justify-content: space-evenly;
 		width: 100%;
-		gap: 2rem;
+		margin-top: 2rem;
 	}
 
 	&__done-button {

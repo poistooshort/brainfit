@@ -12,9 +12,9 @@ const Login = () => {
 				<h1 className="login__title">login page</h1>
 				<form className="login__sign-in">
 						<label className="login__username-input" htmlFor="">username :</label>
-						<input className="login__username-input" name="username" id="username" type="text" />
+						<input className="login__username-input" name="username" id="username" autocomplete="username" type="text" />
 						<label className="login__password-label" htmlFor="">password :</label>
-						<input className="login__password-input" name="password" id="password" type="password" />
+						<input className="login__password-input" name="password" id="password" autocomplete="password" type="password" />
 						<button className="login__submit-button">log in</button>
 				</form>
 				<p className="login__signup-text">{`Don't have an account yet? `}
