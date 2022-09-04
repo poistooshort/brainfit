@@ -24,10 +24,6 @@
 		font-weight: bold;
 	}
 
-	&__input {
-		margin-bottom: 1rem;
-	}
-
 	&__button-row {
 		display: flex;
 		padding-top: 2rem;
@@ -41,5 +37,16 @@
 	&__cancel-button, &__signup-button {
 		box-sizing: border-box;
 		width: 100%;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__error-message {
+		&-username, &-password, &-password-repeat, &-avatar {
+			color: red;
+			margin-bottom: 1rem;
+		}
 	}
 }
