@@ -1,11 +1,14 @@
+import { useHistory } from 'react-router-dom';
+
 import './Signup.scss';
 
 const Signup = (props) => {
+	const history = useHistory(); 
 
 	const handleCancel = (e) => {
 		e.preventDefault();
 
-		//return the user back to the login page
+		history.push('/profile');
 	}
 
 	const handleSignup = (e) => {
@@ -28,7 +31,7 @@ const Signup = (props) => {
 					<label className="signup__avatar-upload" htmlFor="avatar">upload avatar img:</label>
 					<input className="signup__input-avatar" name="avatar" id="avatar" type="file"/>
 					<div className="signup__button-row">
-						<button className="signup__cancel-button">cancel</button>
+						<button className="signup__cancel-button" onClick={handleCancel}>cancel</button>
 						<button className="signup__signup-button">sign up</button>
 					</div>
 				</form>
