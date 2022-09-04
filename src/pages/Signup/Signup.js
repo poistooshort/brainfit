@@ -15,6 +15,8 @@ const Signup = (props) => {
 
 	const handleSignup = (e) => {
 		e.preventDefault();
+		const errorKeys = Object.keys(errorRefs);
+		errorKeys.forEach(key => errorRefs[key].current.textContent = '');
 
 		const { username, password, passwordRepeat } = e.target;
 
@@ -22,7 +24,7 @@ const Signup = (props) => {
 		if(username.value === '' || password.value === '' || !passwordRepeat.value === ''){
 			(username.value === '') && (errorRefs.username.current.textContent = 'username field cannot be empty');
 			(password.value === '') && (errorRefs.password.current.textContent = 'password field cannot be empty');
-			(passwordRepeat.value === '') && (errorRefs.password.current.textContent = 'repeat password field cannot be empty');
+			(passwordRepeat.value === '') && (errorRefs.passwordRepeat.current.textContent = 'repeat password field cannot be empty');
 		}
 		// check if username is used in database already
 		// check if password and repeat password matches
