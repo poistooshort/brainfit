@@ -25,6 +25,7 @@ const Signup = (props) => {
 			(username.value === '') && (errorRefs.username.current.textContent = 'username field cannot be empty');
 			(password.value === '') && (errorRefs.password.current.textContent = 'password field cannot be empty');
 			(passwordRepeat.value === '') && (errorRefs.passwordRepeat.current.textContent = 'repeat password field cannot be empty');
+			return();
 		}
 		// check if username is used in database already
 		// check if password and repeat password matches
