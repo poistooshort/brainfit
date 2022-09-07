@@ -1,7 +1,10 @@
 import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import './Signup.scss';
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Signup = (props) => {
 	const history = useHistory(); 
@@ -25,9 +28,21 @@ const Signup = (props) => {
 			(username.value === '') && (errorRefs.username.current.textContent = 'username field cannot be empty');
 			(password.value === '') && (errorRefs.password.current.textContent = 'password field cannot be empty');
 			(passwordRepeat.value === '') && (errorRefs.passwordRepeat.current.textContent = 'repeat password field cannot be empty');
-			return();
+			return;
 		}
 		// check if username is used in database already
+		axios.get(`${SERVER_URL}/signup/checkUsername/${username.value}`)
+			.then(res => {
+				const { available } = res.data;
+				if(!available){
+					errorRefs.username.current.textContent = 'username has already been taken. please choose another username.';
+					return;
+				}
+				console.log('Is username available?', available);
+			})
+			.catch(err => {
+				console.log(`There was an error trying to check availability of the chosen username. Please try again later`);
+			});
 		// check if password and repeat password matches
 		// upload avatar to public static folder on server
 		// create new user with link to avatar on server 
