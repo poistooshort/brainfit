@@ -34,17 +34,22 @@ const Signup = (props) => {
 		axios.get(`${SERVER_URL}/signup/checkUsername/${username.value}`)
 			.then(res => {
 				const { available } = res.data;
-				if(!available){
-					errorRefs.username.current.textContent = 'username has already been taken. please choose another username.';
+
+				// if username is not available or password does not match the repeated password, prompt the user to change 
+				if(!available || password.value !== passwordRepeat.value){
+					(!available) && (errorRefs.username.current.textContent = 'username has already been taken. please choose another username.');
+					(password.value !== passwordRepeat.value) && (errorRefs.passwordRepeat.current.textContent = 'passwords must match');
 					return;
 				}
-				console.log('Is username available?', available);
+
+				// upload avatar to public static folder on server
+				console.log(res.files);
+
 			})
+
 			.catch(err => {
 				console.log(`There was an error trying to check availability of the chosen username. Please try again later`);
 			});
-		// check if password and repeat password matches
-		// upload avatar to public static folder on server
 		// create new user with link to avatar on server 
 		// add new user to db
 	}
@@ -64,7 +69,13 @@ const Signup = (props) => {
 					<input className="signup__input" name="passwordRepeat" id="passwordRepeat" placeholder="repeat chosen password" autoComplete="new-password" type="password"/>
 					<p className="signup__error-message-password-repeat" ref={errorRefs.passwordRepeat}></p>
 					<label className="signup__avatar-upload" htmlFor="avatar">upload avatar img:</label>
-					<input className="signup__input-avatar" name="avatar" id="avatar" type="file"/>
+					<input 
+						className="signup__input-avatar" 
+						name="avatar" 
+						id="avatar" 
+						type="file"
+						accept="image/*"
+					/>
 					<p className="signup__error-message-avatar" ref={errorRefs.avatar}></p>
 					<div className="signup__button-row">
 						<button className="signup__cancel-button" onClick={handleCancel}>cancel</button>
