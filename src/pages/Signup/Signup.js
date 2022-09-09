@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Signup = (props) => {
 	const history = useHistory(); 
+	const [file, setFile] = useState(null);
 	const errorRefs = { username: useRef(), password: useRef(), passwordRepeat: useRef(), avatar: useRef() };
 
 	const handleCancel = (e) => {
@@ -24,7 +25,7 @@ const Signup = (props) => {
 		const { username, password, passwordRepeat } = e.target;
 
 		// check if there are blank inputs, if there are then prompt error message to fill in
-		if(username.value === '' || password.value === '' || !passwordRepeat.value === ''){
+		if(username.value === '' || password.value === '' || !passwordRepeat.value === '' || !file){
 			(username.value === '') && (errorRefs.username.current.textContent = 'username field cannot be empty');
 			(password.value === '') && (errorRefs.password.current.textContent = 'password field cannot be empty');
 			(passwordRepeat.value === '') && (errorRefs.passwordRepeat.current.textContent = 'repeat password field cannot be empty');
@@ -41,17 +42,32 @@ const Signup = (props) => {
 					(password.value !== passwordRepeat.value) && (errorRefs.passwordRepeat.current.textContent = 'passwords must match');
 					return;
 				}
-
-				// upload avatar to public static folder on server
-				console.log(res.files);
-
+				// check if there is an avatar uploaded
+				if(file){
+					// post call to server to add avatar image to public folder
+					const data = new FormData();
+					data.append('file', file);
+					axios.post(`${SERVER_URL}/signup`, data)
+						.then(res => {
+							const filename = JSON.parse(res.data).filename;
+							const avatarUrl = `${SERVER_URL}/public/avatars/${filename}`;
+							const userData = {
+								username: username, 
+								password: password,
+								avatarUrl: avatarUrl
+							};
+						})
+				}
 			})
-
 			.catch(err => {
 				console.log(`There was an error trying to check availability of the chosen username. Please try again later`);
 			});
 		// create new user with link to avatar on server 
 		// add new user to db
+	}
+
+	const handleImageSelect = (e) => {
+		setFile(e.target.files[0]);
 	}
 
 	return(
@@ -71,6 +87,7 @@ const Signup = (props) => {
 					<label className="signup__avatar-upload" htmlFor="avatar">upload avatar img:</label>
 					<input 
 						className="signup__input-avatar" 
+						onChange={handleImageSelect}
 						name="avatar" 
 						id="avatar" 
 						type="file"
