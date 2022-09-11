@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'; 
 import axios from 'axios';
 
 import './Signup.scss';
@@ -52,14 +52,12 @@ const Signup = (props) => {
 						.then(res => {
 							const filename = JSON.parse(res.data).filename;
 							const avatarUrl = `${SERVER_URL}/public/avatars/${filename}`;
-							/*
 							const passwordHash = bcrypt.hashSync(password.value, 12);
 							const userData = {
 								username: username.value, 
 								password: passwordHash,
 								avatarUrl: avatarUrl
 							};
-							*/
 								// need to implement post request
 						})
 				}
